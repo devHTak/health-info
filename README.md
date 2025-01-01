@@ -1,9 +1,10 @@
-## KB헬스케어 과제
-
 ### ERD(데이터베이스 설게도)
 ![img.png](img.png)
 - 단말에서 제공하는 정보는 HEALTH 테이블에 저장하였고 이에 대한 건강활동 정보는 HEALTH_ACTIVITY 테이블에 저장하였습니다.
-- HEALTH와 HEALTH_ACTIVITY는 일대다 관계로 JPA에서 다대일 단방향 관계로 정의하였습니다.
+- HEALTH_ACTIVITY와 HEALTH는 다대일 관계입니다.
+  - JPA Entity간의 관계는 다대일 단방향으로 설정했습니다.
+- 저장하는 정보 중 step, distance, calories 는 소수점값으로 정보의 손실이 발생하지 않고 소수점 정보를 저장할 수 있도록 Decimal 타입으로 정의하였습니다.
+  - JPA Entity는 BigDecimal 타입으로 설정하였습니다. 
 
 ### 샘플코드
 
@@ -123,7 +124,7 @@ public class HealthActivityAdapter implements HealthActivityOutputPort {
 
 ### 데이터 조회 결과
 
-- 서버 구동 후 API를 조회하여 결과를 확인할 수 있습니다.
+- 서버 구동 후 API를 조회하여 결과를 확인할 수 있습니다. 서버 구동 시 MySQL 설정 확인 부탁드립니다.
   - 일별 조회
     - GET /healths?type=Daily
   - 월별 조회
